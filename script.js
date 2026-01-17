@@ -93,6 +93,15 @@ function playRound(humanChoice, computerChoice) {
 
     if (rounds > 0) {
         playGame()
+    } else {
+        if (humanScore > computerScore) {
+            alert("Game over - You win!")
+        } else if (humanChoice == humanScore) {
+            alert("Game over - Tie!")
+        } else {
+            alert("Game over - You Lose :(");
+        }
+        
     }
     
 }
