@@ -26,6 +26,63 @@ function getHumanChoice() {
 
 }
 
-function playRound(humanChoice, computerChoice) {
+function displayScores() {
+    console.log("Your score: " + humanScore)
+    console.log("Computer's Score: " + computerScore)
+}
 
+function playRound(humanChoice, computerChoice) {
+    // Make both parameters case-insensitive (lowercase)
+    humanChoice = humanChoice.toLowerCase();
+    computerChoice = computerChoice.toLowerCase();
+
+    const winner = "Congratulations, you win! "
+    const loser = "Shucks, better luck next time. "
+    const tie = "A tie! What are the chances?! No points awarded. You both chose: "
+
+    // If human is rock and computer is paper, computer wins and vice versa
+    if (humanChoice == computerChoice) {
+        // Tie
+        console.log(tie + humanChoice)
+        displayScores()
+    } else if (humanChoice == "rock") {
+        if (computerChoice == "paper") {
+            // Win
+            console.log(winner + humanChoice + " beats " + computerChoice)
+            humanScore++
+            displayScores()
+        } else {
+            // Lose
+            console.log(loser + computerChoice + " beats " + humanChoice)
+            computerScore++
+            displayScores()
+        }
+    // If human is paper and computer is scissors, computer wins and vice versa
+    } else if (humanChoice == "paper") {
+        if (computerChoice == "scissors") {
+            // Win
+            console.log(winner + humanChoice + " beats " + computerChoice)
+            humanScore++
+            displayScores()
+        } else {
+            // Lose
+            console.log(loser + computerChoice + " beats " + humanChoice)
+            computerScore++
+            displayScores()
+        }
+    // If human is scissors and computer is rock, computer wins and vice versa
+    } else if (humanChoice == "scissors") {
+        if (computerChoice == "rock") {
+            // Win
+            console.log(winner + humanChoice + " beats " + computerChoice)
+            humanScore++
+            displayScores()
+        } else {
+            // Lose
+            console.log(loser + computerChoice + " beats " + humanChoice)
+            computerScore++
+            displayScores()
+        }
+    }
+    
 }
