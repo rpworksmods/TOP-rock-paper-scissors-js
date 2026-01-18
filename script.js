@@ -6,39 +6,28 @@ function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3) + 1; // Get random number between 1 - 3
     switch(choice) {
         case 1:
-            alert("Rock")
             return "Rock"
         case 2:
-            alert("Paper")
             return "Paper"
         case 3:
-            alert("Scissors")
             return "Scissors"
     }
 }
 
-function getHumanChoice() {
-
-    return prompt("Make your choice between: Rock, Paper or Scissors below:")
-
-}
-
 function displayScores() {
-    console.log("Your score: " + humanScore)
-    console.log("Computer's Score: " + computerScore)
-}
+    const hScoreBox = document.querySelector("#humanScore");
+    const cScoreBox = document.querySelector("#computerScore");
 
-function playGame() {
-    let playerChoice = getHumanChoice()
-    let computerChoice = getComputerChoice()
-
-    playRound(playerChoice, computerChoice)
+    hScoreBox.textContent = humanScore
+    cScoreBox.textContent = computerScore
 }
 
 function playRound(humanChoice, computerChoice) {
     // Make both parameters case-insensitive (lowercase)
     humanChoice = humanChoice.toLowerCase();
     computerChoice = computerChoice.toLowerCase();
+
+    const resultBox = document.querySelector("#results");
 
     const winner = "Congratulations, you win! "
     const loser = "Shucks, better luck next time. "
@@ -47,17 +36,17 @@ function playRound(humanChoice, computerChoice) {
     // If human is rock and computer is paper, computer wins and vice versa
     if (humanChoice == computerChoice) {
         // Tie
-        console.log(tie + humanChoice)
+        resultBox.textContent = tie + humanChoice
         displayScores()
     } else if (humanChoice == "paper") {
         if (computerChoice == "rock") {
             // Win
-            console.log(winner + humanChoice + " beats " + computerChoice)
+            resultBox.textContent = winner + humanChoice + " beats " + computerChoice
             humanScore++
             displayScores()
         } else {
             // Lose
-            console.log(loser + computerChoice + " beats " + humanChoice)
+            resultBox.textContent = loser + computerChoice + " beats " + humanChoice
             computerScore++
             displayScores()
         }
@@ -65,12 +54,12 @@ function playRound(humanChoice, computerChoice) {
     } else if (humanChoice == "scissors") {
         if (computerChoice == "paper") {
             // Win
-            console.log(winner + humanChoice + " beats " + computerChoice)
+            resultBox.textContent = winner + humanChoice + " beats " + computerChoice
             humanScore++
             displayScores()
         } else {
             // Lose
-            console.log(loser + computerChoice + " beats " + humanChoice)
+            resultBox.textContent = loser + computerChoice + " beats " + humanChoice
             computerScore++
             displayScores()
         }
@@ -78,30 +67,31 @@ function playRound(humanChoice, computerChoice) {
     } else if (humanChoice == "rock") {
         if (computerChoice == "scissors") {
             // Win
-            console.log(winner + humanChoice + " beats " + computerChoice)
+            resultBox.textContent = winner + humanChoice + " beats " + computerChoice
             humanScore++
             displayScores()
         } else {
             // Lose
-            console.log(loser + computerChoice + " beats " + humanChoice)
+            resultBox.textContent = loser + computerChoice + " beats " + humanChoice
             computerScore++
             displayScores()
         }
     }
 
-    rounds--
-
-    if (rounds > 0) {
-        playGame()
-    } else {
-        if (humanScore > computerScore) {
-            alert("Game over - You win!")
-        } else if (humanChoice == humanScore) {
-            alert("Game over - Tie!")
-        } else {
-            alert("Game over - You Lose :(");
-        }
-        
+    if (humanScore > computerScore && humanScore >= 5) {
+        alert("Game over - You win!")
+    } else if (humanChoice == humanScore) {
+        alert("Game over - Tie!")
+    } else if (computerScore > humanScore && computerScore >= 5) {
+        alert("Game over - You Lose :(");
     }
     
 }
+
+const buttons = document.querySelectorAll(".choiceBtn");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playRound(button.id, getComputerChoice())
+    })
+})
