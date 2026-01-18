@@ -18,8 +18,8 @@ function displayScores() {
     const hScoreBox = document.querySelector("#humanScore");
     const cScoreBox = document.querySelector("#computerScore");
 
-    hScoreBox.textContent = humanScore
-    cScoreBox.textContent = computerScore
+    hScoreBox.textContent = "Your Score: " + humanScore
+    cScoreBox.textContent = "Computer Score: " + computerScore
 }
 
 function playRound(humanChoice, computerChoice) {
