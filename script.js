@@ -80,10 +80,19 @@ function playRound(humanChoice, computerChoice) {
 
     if (humanScore > computerScore && humanScore >= 5) {
         alert("Game over - You win!")
+        humanScore = 0
+        computerScore = 0
+        resultBox.textContent = "Choose a button to play again!"
     } else if (humanChoice == humanScore) {
         alert("Game over - Tie!")
+        humanScore = 0
+        computerScore = 0
+        resultBox.textContent = "Choose a button to play again!"
     } else if (computerScore > humanScore && computerScore >= 5) {
         alert("Game over - You Lose :(");
+        humanScore = 0
+        computerScore = 0
+        resultBox.textContent = "Choose a button to play again!"
     }
     
 }
